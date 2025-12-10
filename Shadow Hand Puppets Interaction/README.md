@@ -4,10 +4,25 @@
 - **index.html** - Main HTML structure
 - **style.css** - All styling and animations
 - **script.js** - Hand detection and interaction logic
+- **assets/videos/** - Folder for animal animation videos
 
-## 🎭 New Feature: Real-time Shadow Hands!
+## 🎬 NEW: Video Animations!
 
-Your hands now appear as **shadow puppets** in real-time on the spotlight screen! The camera feed is processed to create a high-contrast shadow effect, making your hands look like they're casting shadows on the wall.
+After holding a gesture, the interaction now plays animated videos of each animal!
+
+### 📹 Adding Your Videos
+
+Place your animal animation videos in the `assets/videos/` folder with these exact names:
+- `rabbit.mp4` - Rabbit animation
+- `elephant.mp4` - Elephant animation
+- `butterfly.mp4` - Butterfly animation
+- `dog.mp4` - Dog animation
+
+Videos should be in MP4 format for best compatibility.
+
+## 🎭 Real-time Shadow Hands!
+
+Your hands appear as **shadow puppets** in real-time on the spotlight screen! The camera feed is processed to create a high-contrast shadow effect, making your hands look like they're casting shadows on the wall.
 
 ## ✨ How It Works
 
@@ -20,8 +35,11 @@ Your hands now appear as **shadow puppets** in real-time on the spotlight screen
    - Rabbit (peace sign) 🐰
    - Elephant (fist + thumb) 🐘
    - Butterfly (all fingers spread) 🦋
-   - Wolf (bent fingers) 🐺
-4. **Animal Screen** → Shows the detected animal for 3s
+   - Dog (bent fingers) 🐕
+4. **Animal Animation** → Shows Figma frame, then plays video!
+   - Static frame appears (1s)
+   - Video animation fades in and plays (7s)
+   - Videos loop while displayed
 5. **Auto-return** → Back to spotlight to try again!
 
 ## 🎨 Visual Effects

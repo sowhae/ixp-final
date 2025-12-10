@@ -22,7 +22,7 @@ const elements = {
     rabbitScreen: document.getElementById('rabbitScreen'),
     elephantScreen: document.getElementById('elephantScreen'),
     butterflyScreen: document.getElementById('butterflyScreen'),
-    wolfScreen: document.getElementById('wolfScreen'),
+    dogScreen: document.getElementById('dogScreen'),
     animationScreen: document.getElementById('animationScreen'),
     hintIcon: document.getElementById('hintIcon'),
     gestureIndicator: document.getElementById('gestureIndicator'),
@@ -192,10 +192,10 @@ function detectGesture(landmarks) {
         }
     }
 
-    // Wolf/Dog: Hand profile with bent fingers
+    // Dog: Hand profile with bent fingers
     const handTilt = Math.abs(thumb.y - pinky.y);
     if (!indexExtended && !middleExtended && handTilt > 0.15) {
-        return 'wolf';
+        return 'dog';
     }
 
     return 'none';
@@ -242,7 +242,7 @@ function triggerGestureAction(gesture) {
         'rabbit': 'rabbit',
         'elephant': 'elephant',
         'butterfly': 'butterfly',
-        'wolf': 'wolf'
+        'dog': 'dog'
     };
 
     const targetScreen = screenMap[gesture];
@@ -256,10 +256,17 @@ function triggerGestureAction(gesture) {
 // ================================
 
 function switchScreen(screenName) {
-    // Hide all screens
+    // Hide all screens and stop all videos
     Object.values(elements).forEach(el => {
         if (el && el.classList && el.classList.contains('screen')) {
             el.classList.remove('active');
+            // Stop and reset any videos in this screen
+            const video = el.querySelector('.animal-video');
+            if (video) {
+                video.pause();
+                video.currentTime = 0;
+                video.classList.remove('playing');
+            }
         }
     });
 
@@ -271,7 +278,7 @@ function switchScreen(screenName) {
         'rabbit': elements.rabbitScreen,
         'elephant': elements.elephantScreen,
         'butterfly': elements.butterflyScreen,
-        'wolf': elements.wolfScreen,
+        'dog': elements.dogScreen,
         'animation': elements.animationScreen
     };
 
@@ -285,13 +292,44 @@ function switchScreen(screenName) {
             elements.videoContainer.classList.add('visible');
         } else if (screenName === 'gestureIcons') {
             elements.videoContainer.classList.remove('visible');
-        } else if (['rabbit', 'elephant', 'butterfly', 'wolf'].includes(screenName)) {
+        } else if (['rabbit', 'elephant', 'butterfly', 'dog'].includes(screenName)) {
             elements.videoContainer.classList.remove('visible');
-            // Auto-return to spotlight after 3 seconds
+
+            // Play animation after showing the frame
+            setTimeout(() => {
+                playAnimalAnimation(screenName, targetElement);
+            }, 1000); // Wait 1 second to show the static frame first
+
+            // Auto-return to spotlight after video plays
             setTimeout(() => {
                 switchScreen('spotlight');
-            }, 3000);
+            }, 8000); // 8 seconds total (1s frame + ~7s video)
         }
+    }
+}
+
+function playAnimalAnimation(animalName, screenElement) {
+    const video = screenElement.querySelector('.animal-video');
+    if (video) {
+        // Check if video source exists
+        video.load();
+
+        // Handle video load success
+        video.addEventListener('loadeddata', function onLoaded() {
+            video.classList.add('playing');
+            video.play().catch(err => {
+                console.log('Video playback failed:', err);
+                // If video fails to play, just keep showing the static image
+            });
+            video.removeEventListener('loadeddata', onLoaded);
+        }, { once: true });
+
+        // Handle video load error (file doesn't exist)
+        video.addEventListener('error', function onError() {
+            console.log(`Video for ${animalName} not found. Showing static image only.`);
+            // Keep showing the static image if video doesn't exist
+            video.removeEventListener('error', onError);
+        }, { once: true });
     }
 }
 
