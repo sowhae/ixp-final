@@ -1,0 +1,21 @@
+{
+  "name": "shadow-hand-puppets",
+  "version": "1.0.0",
+  "description": "Interactive shadow hand puppet experience using hand gesture recognition",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 8080 -o",
+    "dev": "npx live-server --port=8080 --open=index.html"
+  },
+  "keywords": [
+    "hand-gesture",
+    "mediapipe",
+    "interactive",
+    "shadow-puppets",
+    "camera"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

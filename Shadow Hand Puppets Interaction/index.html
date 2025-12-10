@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Hand Puppets</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Video Container for Camera -->
+        <div id="videoContainer">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay">
+            <div>Loading Hand Detection...</div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="screen active"></div>
+
+        <!-- Spotlight Screen -->
+        <div id="spotlightScreen" class="screen">
+            <img src="https://www.figma.com/api/mcp/asset/b2fae2f5-548f-4409-8c75-f1b0b97e3651" class="spotlight-bg" alt="">
+            <img id="hintIcon" src="https://www.figma.com/api/mcp/asset/16e9205c-1eb9-4918-b308-4440df72aa6a" alt="Hint">
+        </div>
+
+        <!-- Gesture Icons Screen -->
+        <div id="gestureIconsScreen" class="screen">
+            <img src="https://www.figma.com/api/mcp/asset/8fed2545-d7ec-4084-b759-1895049f95ec" class="bg-image" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/97372707-12b4-4ca7-bfc5-9bb2dca9e230" class="icons-image" alt="Gesture Icons">
+            <img class="close-icon" src="https://www.figma.com/api/mcp/asset/b24ad832-308a-4dc4-8c82-e8ff366ad4dd" alt="Close">
+        </div>
+
+        <!-- Rabbit Screen -->
+        <div id="rabbitScreen" class="screen animal-screen">
+            <img src="https://www.figma.com/api/mcp/asset/55429108-2795-4886-a8af-57a21b7632d0" class="bg-image" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/448608ef-0973-4d75-ba52-41427eceedb3" class="animal-image" alt="Rabbit">
+            <img class="back-icon" src="https://www.figma.com/api/mcp/asset/377ca1a5-c774-4d3b-bd81-b4f7cdc7e975" alt="Back">
+        </div>
+
+        <!-- Elephant Screen -->
+        <div id="elephantScreen" class="screen animal-screen">
+            <img src="https://www.figma.com/api/mcp/asset/d218bbe7-57ca-46da-8d59-24d4484efc52" class="bg-image" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/ece272bc-36b0-409b-aa79-bb0085818719" class="animal-image" alt="Elephant">
+            <img class="back-icon" src="https://www.figma.com/api/mcp/asset/62ac6c7a-1ad6-44a6-90c0-3a9819b04995" alt="Back">
+        </div>
+
+        <!-- Butterfly Screen -->
+        <div id="butterflyScreen" class="screen animal-screen">
+            <img src="https://www.figma.com/api/mcp/asset/21e5e97a-4b8d-4c38-958a-3a96bd9edb5d" class="bg-image" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/8af79eec-1d70-46cb-a950-e0f1c83b4bdc" class="animal-image" alt="Butterfly">
+            <img class="back-icon" src="https://www.figma.com/api/mcp/asset/e697288a-6c66-404a-98b0-8c9f107a2b9d" alt="Back">
+        </div>
+
+        <!-- Wolf Screen -->
+        <div id="wolfScreen" class="screen animal-screen">
+            <img src="https://www.figma.com/api/mcp/asset/e668b170-5595-41ed-8039-ca5ce009061d" class="bg-image" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/45daeac9-bbe4-431a-9c45-ec6a77773c99" class="animal-image" alt="Wolf">
+            <img class="back-icon" src="https://www.figma.com/api/mcp/asset/0e24f93a-bd10-4ffc-8aa3-7dbe09367c22" alt="Back">
+        </div>
+
+        <!-- Animation Screen (for future video animations) -->
+        <div id="animationScreen" class="screen">
+            <div class="animation-content">
+                <!-- Animation content will be inserted here -->
+            </div>
+        </div>
+
+        <!-- Gesture Hold Indicator -->
+        <div id="gestureIndicator">
+            <div class="progress"></div>
+        </div>
+
+        <!-- Debug Info -->
+        <div id="debugInfo"></div>
+    </div>
+
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+    <!-- Main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
